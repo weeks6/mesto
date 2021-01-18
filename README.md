@@ -12,4 +12,4 @@
 - CSS Grid
 - JS
 
-[https://weeks6.github.io/mesto](Посмотреть страницу на Github Pages)
+[Посмотреть страницу на Github Pages](https://weeks6.github.io/mesto)
