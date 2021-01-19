@@ -1,0 +1,26 @@
+.add-button {
+  padding: 0;
+  border: none;
+  outline: none;
+  background: none;
+  width: 150px;
+  height: 50px;
+  border: 2px solid var(--primary-color-light);
+  border-radius: 2px;
+  margin-left: auto;
+  cursor: pointer;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.add-button:hover {
+  opacity: 0.6;
+}
+
+@media screen and (max-width: 767px) {
+  .add-button {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 36px;
+    max-width: 420px; /* subject to change */
+  }
+}

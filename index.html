@@ -8,11 +8,33 @@
 </head>
 <body>
     <div class="page">
-      <header class="header">
+      <header class="header container">
 				<a href="https://weeks6.github.io/mesto" class="header__logo"></a>
 			</header>
 			<div class="header-line"></div>
-			<main></main>
+			<main class="container">
+				<section class="profile">
+					<div class="avatar">
+						<img src="./images/profile-picture.png" class="avatar__image" alt="Картинка профиля">
+					</div>
+					<div class="profile-info">
+						<div class="profile-info__inner">
+							<h1 class="profile-info__name">Жак-Ив Кусто</h1>
+							<button class="edit-button">
+								<svg class="edit-button__icon" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M10 1.32827L2.60377 8.7666L1.28302 7.41936L8.66038 0L10 1.32827ZM0 10L1.96226 9.41177L0.584906 8.08349L0 10Z" fill="white"/>
+								</svg>									
+							</button>
+						</div>
+						<p class="profile-info__title">Исследователь океана</p>
+					</div> 
+					<button class="add-button">
+						<svg class="add-button__icon" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M22 9.77778H12.2222V0H9.77778V9.77778H0V12.2222H9.77778V22H12.2222V12.2222H22V9.77778Z" fill="white"/>
+						</svg>
+					</button>
+				</section>
+			</main>
 			<footer></footer>  
     </div>
 </body>
