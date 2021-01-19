@@ -3,6 +3,9 @@
   background: none;
   outline: none;
   box-shadow: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: 1px solid var(--primary-color-light);
   width: 24px;
   height: 24px;
