@@ -7,8 +7,8 @@
   height: 19px;
   display: flex;
   align-items: center;
-	justify-content: center;
-	cursor: pointer;
+  justify-content: center;
+  cursor: pointer;
   transition: opacity 0.2s ease-in-out;
   background-image: url("../../images/heart-icon.svg");
 }
@@ -17,6 +17,8 @@
   background-image: url("../../images/heart-icon-filled.svg");
 }
 
-.like-button:hover {
-	opacity: .5;
+@media (hover: hover) {
+  .like-button:hover {
+    opacity: 0.5;
+  }
 }
