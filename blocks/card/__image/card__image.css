@@ -1,0 +1,36 @@
+.card__image {
+    width: 100%;
+    height: 282px;
+    overflow: hidden;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.card:nth-child(1) > .card__image {
+    background-image: url("../../../images/altai.jpg");
+}
+
+.card:nth-child(2) > .card__image {
+    background-image: url("../../../images/elbrus.png");
+}
+
+.card:nth-child(3) > .card__image {
+    background-image: url("../../../images/dombay.png");
+    
+}
+
+.card:nth-child(4) > .card__image {
+    background-image: url("../../../images/elbrus.png");
+    
+}
+
+.card:nth-child(5) > .card__image {
+    background-image: url("../../../images/dombay.png");
+    
+}
+
+.card:nth-child(6) > .card__image {
+    background-image: url("../../../images/karachaevsk.png");
+    
+}
