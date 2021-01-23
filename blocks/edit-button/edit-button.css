@@ -6,6 +6,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-shrink: 0;
   background-image: url("../../images/edit-icon.svg");
   background-repeat: no-repeat;
   background-position: center;
