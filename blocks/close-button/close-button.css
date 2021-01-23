@@ -1,0 +1,28 @@
+.close-button {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  outline: none;
+  background: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: opacity 0.2s ease-in-out;
+  align-self: flex-end;
+}
+
+@media (hover: hover) {
+  .close-button:hover {
+    opacity: 0.6;
+  }
+}
+
+@media screen and (max-width: 880px) {
+  .close-button {
+    width: 26px;
+    height: 26px;
+    margin-bottom: 14px;
+  }
+}

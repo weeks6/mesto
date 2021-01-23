@@ -1,0 +1,6 @@
+.popup__inner {
+  max-width: calc(430px + 40px);
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+}
