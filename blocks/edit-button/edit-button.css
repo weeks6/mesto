@@ -6,6 +6,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-image: url("../../images/edit-icon.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 10px 10px;
   border: 1px solid var(--primary-color-light);
   width: 24px;
   height: 24px;
@@ -25,5 +29,6 @@
     width: 18px;
     height: 18px;
     margin-left: 10px;
+    background-size: 7.5px 7.5px;
   }
 }

@@ -12,6 +12,10 @@
   margin-left: auto;
   cursor: pointer;
   transition: opacity 0.2s ease-in-out;
+  background-image: url("../../images/plus-icon.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 22px 22px;
 }
 
 @media (hover: hover) {
@@ -26,5 +30,6 @@
     margin-left: 0;
     margin-top: 36px;
     max-width: 420px; /* subject to change */
+    background-size: 16px 16px;
   }
 }
