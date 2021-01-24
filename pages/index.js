@@ -8,32 +8,39 @@
 
 const editButton = document.querySelector('.button_type_edit')
 const closeButton = document.querySelector('.button_type_close')
-
 const editForm = document.querySelector('.edit-form')
-
-const popup = document.querySelector('.popup')
-
+const editPopup = document.querySelector('.popup')
 const nameEl = document.querySelector('.profile-info__name')
 const aboutEl = document.querySelector('.profile-info__about')
-
 const nameFormField = editForm.querySelector('.edit-form__field_type_name')
 const aboutFormField = editForm.querySelector('.edit-form__field_type_about')
 
-editButton.addEventListener('click', () => {
+const togglePopup = (popup) => {
+    popup.classList.toggle('popup_opened')
+}
+
+const fillEditForm = () => {
     nameFormField.value = nameEl.textContent
     aboutFormField.value = aboutEl.textContent
-    popup.classList.add('popup_opened')
-})
+}
 
-closeButton.addEventListener('click', () => {
-    popup.classList.remove('popup_opened')
-})
+const openEditPopup = () => {
+    fillEditForm()
+    togglePopup(editPopup)
+}
 
-editForm.addEventListener('submit', event => {
+const submitEditForm = (event) => {
     event.preventDefault()
-
     nameEl.textContent = nameFormField.value
     aboutEl.textContent = aboutFormField.value
+    togglePopup(editPopup)
+}
 
-    popup.classList.remove('popup_opened')
-})
+const closeEditPopup = () => {
+    fillEditForm()
+    togglePopup(editPopup)
+}
+
+editButton.addEventListener('click', openEditPopup)
+closeButton.addEventListener('click', closeEditPopup)
+editForm.addEventListener('submit', submitEditForm)
