@@ -8,30 +8,12 @@
 </head>
 <body>
     <div class="page">
-		<div class="popup">
-			<div class="popup__container">
-				<div class="popup__inner container">
-					<button type="button" aria-label="Закрыть" class="button button_type_close"></button>
-					<form class="edit-form" name="edit-form">
-						<div class="edit-form__inner">
-							<h1 class="popup__title">Редактировать профиль</h1>
-							<input type="text" class="edit-form__field edit-form__field_type_name" name="field_name" placeholder="Имя" required>
-							<input type="text" class="edit-form__field edit-form__field_type_about" name="field_about" placeholder="О себе" required>
-							<button class="button button_type_save" type="submit">Сохранить</button>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
       <header class="header container">
 				<a href="https://weeks6.github.io/mesto" class="header__logo" target="_self"></a>
 			</header>
-			<div class="header-line"></div>
-			<main class="container">
+			<main class="main container">
 				<section class="profile">
-					<div class="avatar">
-						<img src="./images/profile-picture.png" class="avatar__image" alt="Картинка профиля">
-					</div>
+					<img src="./images/profile-picture.png" class="avatar" alt="Картинка профиля">
 					<div class="profile-info">
 						<div class="profile-info__inner">
 							<h1 class="profile-info__name">Жак-Ив Кусто</h1>
@@ -44,36 +26,28 @@
 				<section>
 					<ul class="elements">
 						<li class="card">
-							<div class="card__image-container">
-								<img src="./images/altai.jpg" alt="Алтай" class="card__image">
-							</div>
+							<img src="./images/altai.jpg" alt="Алтай" class="card__image">
 							<div class="card__info">
 								<h2 class="card__title">Алтай</h2>
 								<button type="button" aria-label="Нравится" class="button button_type_like"></button>								
 							</div>
 						</li>
 						<li class="card">
-							<div class="card__image-container">
-								<img src="./images/elbrus.png" alt="Эльбрус" class="card__image">
-							</div>
+							<img src="./images/elbrus.png" alt="Эльбрус" class="card__image">
 							<div class="card__info">
 								<h2 class="card__title">Эльбрус</h2>
 								<button type="button" aria-label="Нравится" class="button button_type_like"></button>								
 							</div>
 						</li>
 						<li class="card">
-							<div class="card__image-container">
-								<img src="./images/dombay.png" alt="Домбай" class="card__image">
-							</div>
+							<img src="./images/dombay.png" alt="Домбай" class="card__image">
 							<div class="card__info">
 								<h2 class="card__title">Домбай</h2>
 								<button type="button" aria-label="Нравится" class="button button_type_like"></button>																
 							</div>
 						</li>
 						<li class="card">
-							<div class="card__image-container">
-								<img src="./images/elbrus.png" alt="Эльбрус" class="card__image">
-							</div>
+							<img src="./images/elbrus.png" alt="Эльбрус" class="card__image">
 							<div class="card__info">
 								<h2 class="card__title">Эльбрус</h2>
 								<button type="button" aria-label="Нравится" class="button button_type_like"></button>								
@@ -81,23 +55,17 @@
 							</div>
 						</li>
 						<li class="card">
-							<div class="card__image-container">
-								<img src="./images/dombay.png" alt="Домбай" class="card__image">
-							</div>
+							<img src="./images/dombay.png" alt="Домбай" class="card__image">
 							<div class="card__info">
 								<h2 class="card__title">Домбай</h2>
 								<button type="button" aria-label="Нравится" class="button button_type_like"></button>								
-								
 							</div>
 						</li>
 						<li class="card">
-							<div class="card__image-container">
-								<img src="./images/karachaevsk.png" alt="Карачаево-Черкесия" class="card__image">
-							</div>
+							<img src="./images/karachaevsk.png" alt="Карачаево-Черкесия" class="card__image">
 							<div class="card__info">
 								<h2 class="card__title">Карачаево-Черкесия</h2>
 								<button type="button" aria-label="Нравится" class="button button_type_like"></button>								
-								
 							</div>
 						</li>
 					</ul>
@@ -106,6 +74,19 @@
 			<footer class="footer container">
 				<p class="footer__title">© 2020 Mesto Russia</p>
 			</footer>  
+			<div class="popup">
+				<div class="popup__container container">
+					<button type="button" aria-label="Закрыть" class="button button_type_close"></button>
+					<form class="edit-form" name="edit-form">
+						<div class="edit-form__inner">
+							<h2 class="popup__title">Редактировать профиль</h2>
+							<input type="text" class="edit-form__field edit-form__field_type_name" name="field_name" placeholder="Имя" required>
+							<input type="text" class="edit-form__field edit-form__field_type_about" name="field_about" placeholder="О себе" required>
+							<button class="button button_type_save" type="submit">Сохранить</button>
+						</div>
+					</form>
+				</div>
+			</div>
 	</div>
 	<script src="./script.js"></script>
 </body>
