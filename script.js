@@ -16,8 +16,8 @@ const popup = document.querySelector('.popup')
 const nameEl = document.querySelector('.profile-info__name')
 const aboutEl = document.querySelector('.profile-info__about')
 
-const nameFormField = editForm.querySelector('.edit-form__field_name')
-const aboutFormField = editForm.querySelector('.edit-form__field_about')
+const nameFormField = editForm.querySelector('.edit-form__field_type_name')
+const aboutFormField = editForm.querySelector('.edit-form__field_type_about')
 
 editButton.addEventListener('click', () => {
     nameFormField.value = nameEl.textContent
