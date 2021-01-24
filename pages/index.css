@@ -4,6 +4,13 @@
 
 @import "../blocks/page/page.css";
 
+@import "../blocks/button/button.css";
+@import "../blocks/button/_type/button_type_edit.css";
+@import "../blocks/button/_type/button_type_add.css";
+@import "../blocks/button/_type/button_type_save.css";
+@import "../blocks/button/_type/button_type_close.css";
+@import "../blocks/button/_type/button_type_like.css";
+
 @import "../blocks/header/header.css";
 @import "../blocks/header/__logo/header__logo.css";
 @import "../blocks/header-line/header-line.css";
@@ -18,16 +25,12 @@
 @import "../blocks/avatar/avatar.css";
 @import "../blocks/avatar/__image/avatar__image.css";
 
-@import "../blocks/edit-button/edit-button.css";
-@import "../blocks/add-button/add-button.css";
-
 @import "../blocks/elements/elements.css";
 @import "../blocks/card/card.css";
 @import "../blocks/card/__image-container/card__image-container.css";
 @import "../blocks/card/__image/card__image.css";
 @import "../blocks/card/__info/card__info.css";
 @import "../blocks/card/__title/card__title.css";
-@import "../blocks/like-button/like-button.css";
 
 @import "../blocks/footer/footer.css";
 @import "../blocks/footer/__title/footer__title.css";
@@ -40,6 +43,3 @@
 @import "../blocks/edit-form/edit-form.css";
 @import "../blocks/edit-form/__inner/edit-form__inner.css";
 @import "../blocks/edit-form/__field/edit-form__field.css";
-@import "../blocks/edit-button/edit-button.css";
-@import "../blocks/close-button/close-button.css";
-@import "../blocks/save-button/save-button.css";

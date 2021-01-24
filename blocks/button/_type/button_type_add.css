@@ -1,32 +1,17 @@
-.add-button {
-  padding: 0;
-  outline: none;
-  background: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-shrink: 0;
+.button_type_add {
   width: 150px;
   height: 50px;
   border: 2px solid var(--primary-color-light);
   border-radius: 2px;
   margin-left: auto;
-  cursor: pointer;
-  transition: opacity 0.2s ease-in-out;
-  background-image: url("../../images/plus-icon.svg");
+  background-image: url("../../../images/plus-icon.svg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 22px 22px;
 }
 
-@media (hover: hover) {
-  .add-button:hover {
-    opacity: 0.6;
-  }
-}
-
 @media screen and (max-width: 767px) {
-  .add-button {
+  .button_type_add {
     width: 100%;
     margin-left: 0;
     margin-top: 36px;

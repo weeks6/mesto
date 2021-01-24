@@ -1,13 +1,13 @@
-const likeButtons = document.querySelectorAll('.like-button')
+// const likeButtons = document.querySelectorAll('.button_type_like')
 
-for (const button of likeButtons) {
-    button.addEventListener('click', () => {
-        button.classList.toggle('like-button_active')
-    })
-}
+// for (const button of likeButtons) {
+//     button.addEventListener('click', () => {
+//         button.classList.toggle('like-button_active')
+//     })
+// }
 
-const editButton = document.querySelector('.edit-button')
-const closeButton = document.querySelector('.close-button')
+const editButton = document.querySelector('.button_type_edit')
+const closeButton = document.querySelector('.button_type_close')
 
 const editForm = document.querySelector('.edit-form')
 

@@ -11,13 +11,13 @@
 		<div class="popup">
 			<div class="popup__container">
 				<div class="popup__inner container">
-					<button class="close-button"></button>
-					<form class="edit-form">
+					<button type="button" aria-label="Закрыть" class="button button_type_close"></button>
+					<form class="edit-form" name="edit-form">
 						<div class="edit-form__inner">
 							<h1 class="popup__title">Редактировать профиль</h1>
-							<input type="text" class="edit-form__field edit-form__field_name" placeholder="Имя">
-							<input type="text" class="edit-form__field edit-form__field_about" placeholder="О себе">
-							<button class="save-button" type="submit">Сохранить</button>
+							<input type="text" class="edit-form__field edit-form__field_name" name="field_name" placeholder="Имя">
+							<input type="text" class="edit-form__field edit-form__field_about" name="field_about" placeholder="О себе">
+							<button class="button button_type_save" type="submit">Сохранить</button>
 						</div>
 					</form>
 				</div>
@@ -35,11 +35,11 @@
 					<div class="profile-info">
 						<div class="profile-info__inner">
 							<h1 class="profile-info__name">Жак-Ив Кусто</h1>
-							<button class="edit-button"></button>
+							<button type="button" aria-label="Редактировать" class="button button_type_edit"></button>
 						</div>
 						<p class="profile-info__about">Исследователь океана</p>
 					</div> 
-					<button class="add-button"></button>
+					<button type="button" aria-label="Добавить" class="button button_type_add"></button>
 				</section>
 				<section>
 					<ul class="elements">
@@ -49,7 +49,7 @@
 							</div>
 							<div class="card__info">
 								<h2 class="card__title">Алтай</h2>
-								<button class="like-button"></button>								
+								<button type="button" aria-label="Нравится" class="button button_type_like"></button>								
 							</div>
 						</li>
 						<li class="card">
@@ -58,7 +58,7 @@
 							</div>
 							<div class="card__info">
 								<h2 class="card__title">Эльбрус</h2>
-								<button class="like-button"></button>								
+								<button type="button" aria-label="Нравится" class="button button_type_like"></button>								
 							</div>
 						</li>
 						<li class="card">
@@ -67,7 +67,7 @@
 							</div>
 							<div class="card__info">
 								<h2 class="card__title">Домбай</h2>
-								<button class="like-button"></button>								
+								<button type="button" aria-label="Нравится" class="button button_type_like"></button>																
 							</div>
 						</li>
 						<li class="card">
@@ -76,7 +76,8 @@
 							</div>
 							<div class="card__info">
 								<h2 class="card__title">Эльбрус</h2>
-								<button class="like-button"></button>								
+								<button type="button" aria-label="Нравится" class="button button_type_like"></button>								
+							
 							</div>
 						</li>
 						<li class="card">
@@ -85,7 +86,8 @@
 							</div>
 							<div class="card__info">
 								<h2 class="card__title">Домбай</h2>
-								<button class="like-button"></button>								
+								<button type="button" aria-label="Нравится" class="button button_type_like"></button>								
+								
 							</div>
 						</li>
 						<li class="card">
@@ -94,7 +96,8 @@
 							</div>
 							<div class="card__info">
 								<h2 class="card__title">Карачаево-Черкесия</h2>
-								<button class="like-button"></button>								
+								<button type="button" aria-label="Нравится" class="button button_type_like"></button>								
+								
 							</div>
 						</li>
 					</ul>

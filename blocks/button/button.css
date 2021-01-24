@@ -1,0 +1,22 @@
+.button {
+  padding: 0;
+  background: none;
+  outline: none;
+  box-shadow: none;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  transition: opacity 0.2s ease-in-out;
+  cursor: pointer;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+}
+
+@media (hover: hover) {
+  .button:hover {
+    opacity: 0.6;
+  }
+}
