@@ -7,7 +7,7 @@
   line-height: 48px;
   color: var(--primary-color-light);
   text-overflow: ellipsis;
-  white-space: pre-wrap;
+  white-space: nowrap;
   overflow: hidden;
 }
 
