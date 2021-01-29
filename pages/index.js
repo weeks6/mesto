@@ -1,3 +1,4 @@
+const cardList = document.querySelector('.elements')
 // очистка полей формы
 const clearFormFields = (...fields) => {
     for (let field of fields) {
@@ -61,11 +62,20 @@ const createCardElement = (template, title, link, imageAlt = title) => {
         likeButton.classList.toggle('button_type_like_active')
     })
 
+    // удаление карточки
+    const deleteButton = cardElement.querySelector('.button_type_delete')
+    deleteButton.addEventListener('click', deleteCard)
+
     return cardElement
 }
 
+// удаление карточки
+const deleteCard = (evt) => {
+    const cardToDelete = evt.path[1] // элемент карточки
+    cardToDelete.remove()
+}
+
 // создание новой карточки 
-const cardList = document.querySelector('.elements')
 
 const addPopup = document.querySelector('.add-popup')
 const addForm = document.querySelector('.add-form')
