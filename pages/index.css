@@ -39,6 +39,7 @@
 @import "../blocks/popup/popup.css";
 @import "../blocks/popup/_opened/popup_opened.css";
 @import "../blocks/popup/__title/popup__title.css";
-@import "../blocks/edit-form/edit-form.css";
-@import "../blocks/edit-form/__inner/edit-form__inner.css";
-@import "../blocks/edit-form/__field/edit-form__field.css";
+
+@import "../blocks/form/form.css";
+@import "../blocks/form/__text-field/form__text-field.css";
+@import "../blocks/form/__inner/form__inner.css";

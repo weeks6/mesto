@@ -1,4 +1,4 @@
-.edit-form__field {
+.form__text-field {
   box-sizing: border-box;
   display: block;
   width: 100%;
@@ -21,6 +21,6 @@
   max-width: 100%;
 }
 
-.edit-form__field:first-of-type {
+.form__text-field:first-of-type {
   margin-top: 0;
 }
