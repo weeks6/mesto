@@ -1,11 +1,4 @@
-// const likeButtons = document.querySelectorAll('.button_type_like')
-
-// for (const button of likeButtons) {
-//     button.addEventListener('click', () => {
-//         button.classList.toggle('like-button_active')
-//     })
-// }
-
+// очистка полей формы
 const clearFormFields = (...fields) => {
     for (let field of fields) {
         field.value = ''
@@ -61,6 +54,12 @@ const createCardElement = (template, title, link, imageAlt = title) => {
     cardElement.querySelector('.card__title').textContent = title
     cardElement.querySelector('.card__image').src = link
     cardElement.querySelector('.card__image').alt = imageAlt
+
+    // лайк карточки
+    const likeButton = cardElement.querySelector('.button_type_like')
+    likeButton.addEventListener('click', () => {
+        likeButton.classList.toggle('button_type_like_active')
+    })
 
     return cardElement
 }
