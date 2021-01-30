@@ -8,6 +8,7 @@ const clearFormFields = (...fields) => {
 
 const togglePopup = (popup) => {
     popup.classList.toggle('popup_opened')
+    pageElement.classList.toggle('page_no-overflow')
 }
 
 // редактирование профиля
@@ -49,12 +50,30 @@ editForm.addEventListener('submit', submitEditForm)
 // создание карточки
 
 const cardTemplate = document.querySelector('#card-template').content
+const pageElement = document.querySelector('.page')
 const createCardElement = (template, title, link, imageAlt = title) => {
     const cardElement = template.querySelector('.card').cloneNode(true)
+    const cardImage = cardElement.querySelector('.card__image')
+
+    // создание попапа картинки
+    const cardImagePopup = template.querySelector('.image-popup').cloneNode(true)
+    const cardPopupImage = cardImagePopup.querySelector('.card__popup-image')
+    cardPopupImage.src = link
+    
+    // закрытие попапа картинки
+    const closeImagePopupBtn = cardImagePopup.querySelector('.button_popup_image_close')
+    cardImagePopup.querySelector('.card__popup-title').textContent = title
+    closeImagePopupBtn.addEventListener('click', () => togglePopup(cardImagePopup))
+    
+    pageElement.append(cardImagePopup)
 
     cardElement.querySelector('.card__title').textContent = title
-    cardElement.querySelector('.card__image').src = link
-    cardElement.querySelector('.card__image').alt = imageAlt
+    cardImage.src = link
+    cardImage.alt = imageAlt
+
+    // открытие попапа картинки
+    cardImage.addEventListener('click', () => openImagePopup(cardImagePopup))
+
 
     // лайк карточки
     const likeButton = cardElement.querySelector('.button_type_like')
@@ -67,6 +86,10 @@ const createCardElement = (template, title, link, imageAlt = title) => {
     deleteButton.addEventListener('click', deleteCard)
 
     return cardElement
+}
+
+const openImagePopup = (popup) => {
+  togglePopup(popup)
 }
 
 // удаление карточки

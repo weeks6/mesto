@@ -27,8 +27,10 @@
 
 @import "../blocks/elements/elements.css";
 @import "../blocks/card/card.css";
-@import "../blocks/card/__image-container/card__image-container.css";
 @import "../blocks/card/__image/card__image.css";
+@import "../blocks/card/__popup-image/card__popup-image.css";
+@import "../blocks/card/__popup-title/card__popup-title.css";
+@import "../blocks/popup/__image-container/popup__image-container.css";
 @import "../blocks/card/__info/card__info.css";
 @import "../blocks/card/__title/card__title.css";
 @import "../blocks/button/_type/button_type_delete.css";

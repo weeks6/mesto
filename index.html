@@ -6,63 +6,68 @@
     <link rel="stylesheet" href="./pages/index.css">
     <title>Mesto</title>
 </head>
-<body>
-    <div class="page">
-      <header class="header container">
-				<a href="https://weeks6.github.io/mesto" class="header__logo" target="_self"></a>
-			</header>
-			<main class="main container">
-				<section class="profile">
-					<img src="./images/profile-picture.png" class="avatar" alt="Картинка профиля">
-					<div class="profile-info">
-						<div class="profile-info__inner">
-							<h1 class="profile-info__name">Жак-Ив Кусто</h1>
-							<button type="button" aria-label="Редактировать" class="button button_type_edit"></button>
-						</div>
-						<p class="profile-info__about">Исследователь океана</p>
-					</div> 
-					<button type="button" aria-label="Добавить" class="button button_type_add"></button>
-				</section>
-				<section>
-					<ul class="elements">
-					</ul>
-				</section>
-			</main>
-			<footer class="footer container">
-				<p class="footer__title">© 2020 Mesto Russia</p>
-			</footer>  
-			<div class="popup edit-popup">
-				<div class="popup__container container">
-					<button type="button" aria-label="Закрыть" class="button button_type_close button_popup_edit_close"></button>
-					<form class="form edit-form" name="edit-form">
-						<div class="form__inner">
-							<h2 class="popup__title">Редактировать профиль</h2>
-							<input type="text" class="form__text-field edit-form__field_type_name" name="field_name" placeholder="Имя" required>
-							<input type="text" class="form__text-field edit-form__field_type_about" name="field_about" placeholder="О себе" required>
-							<button class="button button_type_save" type="submit">Сохранить</button>
-						</div>
-					</form>
+<body class="page">
+	<header class="header container">
+		<a href="https://weeks6.github.io/mesto" class="header__logo" target="_self"></a>
+	</header>
+	<main class="main container">
+		<section class="profile">
+			<img src="./images/profile-picture.png" class="avatar" alt="Картинка профиля">
+			<div class="profile-info">
+				<div class="profile-info__inner">
+					<h1 class="profile-info__name">Жак-Ив Кусто</h1>
+					<button type="button" aria-label="Редактировать" class="button button_type_edit"></button>
 				</div>
-			</div>
-			<div class="popup add-popup">
-				<div class="popup__container container">
-					<button type="button" aria-label="Закрыть" class="button button_type_close button_popup_add_close"></button>
-					<form class="form add-form" name="add-form">
-						<div class="form__inner">
-							<h2 class="popup__title">Новое место</h2>
-							<input type="text" class="form__text-field add-form__field_type_title" name="field_title" placeholder="Название" required>
-							<input type="text" class="form__text-field add-form__field_type_image-link" name="field_link" placeholder="Ссылка на картинку" required>
-							<button class="button button_type_save" type="submit">Создать</button>
-						</div>
-					</form>
+				<p class="profile-info__about">Исследователь океана</p>
+			</div> 
+			<button type="button" aria-label="Добавить" class="button button_type_add"></button>
+		</section>
+		<section>
+			<ul class="elements">
+			</ul>
+		</section>
+	</main>
+	<footer class="footer container">
+		<p class="footer__title">© 2020 Mesto Russia</p>
+	</footer>  
+	<div class="popup edit-popup">
+		<div class="popup__container container">
+			<button type="button" aria-label="Закрыть" class="button button_type_close button_popup_edit_close"></button>
+			<form class="form edit-form" name="edit-form">
+				<div class="form__inner">
+					<h2 class="popup__title">Редактировать профиль</h2>
+					<input type="text" class="form__text-field edit-form__field_type_name" name="field_name" placeholder="Имя" required>
+					<input type="text" class="form__text-field edit-form__field_type_about" name="field_about" placeholder="О себе" required>
+					<button class="button button_type_save" type="submit">Сохранить</button>
 				</div>
-			</div>
+			</form>
+		</div>
+	</div>
+	<div class="popup add-popup">
+		<div class="popup__container container">
+			<button type="button" aria-label="Закрыть" class="button button_type_close button_popup_add_close"></button>
+			<form class="form add-form" name="add-form">
+				<div class="form__inner">
+					<h2 class="popup__title">Новое место</h2>
+					<input type="text" class="form__text-field add-form__field_type_title" name="field_title" placeholder="Название" required>
+					<input type="text" class="form__text-field add-form__field_type_image-link" name="field_link" placeholder="Ссылка на картинку" required>
+					<button class="button button_type_save" type="submit">Создать</button>
+				</div>
+			</form>
+		</div>
 	</div>
 
 	<template id="card-template">
+		<div class="popup image-popup">
+			<div class="popup__image-container">
+				<button type="button" aria-label="Закрыть" class="button button_type_close button_popup_image_close"></button>
+				<img src="" alt="" class="card__image card__popup-image">
+				<h2 class="card__popup-title"></h2>
+			</div>
+		</div>
 		<li class="card">
 			<button class="button button_type_delete"></button>
-			<img src="" alt="" class="card__image">
+			<img src="" alt="" class="card__image card__main-image">
 			<div class="card__info">
 				<h2 class="card__title"></h2>
 				<button type="button" aria-label="Нравится" class="button button_type_like"></button>								
