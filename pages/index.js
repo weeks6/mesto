@@ -13,13 +13,13 @@ const togglePopup = (popup) => {
 
 // редактирование профиля
 const editButton = document.querySelector('.button_type_edit')
-const closeEditPopupBtn = document.querySelector('.button_popup_edit_close')
 const editForm = document.querySelector('.edit-form')
 const editPopup = document.querySelector('.edit-popup')
+const closeEditPopupBtn = editPopup.querySelector('.button_type_close')
 const nameEl = document.querySelector('.profile-info__name')
 const aboutEl = document.querySelector('.profile-info__about')
-const nameFormField = editForm.querySelector('.edit-form__field_type_name')
-const aboutFormField = editForm.querySelector('.edit-form__field_type_about')
+const nameFormField = editForm.querySelector('#edit-form__field_type_name')
+const aboutFormField = editForm.querySelector('#edit-form__field_type_about')
 
 const fillEditForm = () => {
     nameFormField.value = nameEl.textContent
@@ -103,11 +103,11 @@ const deleteCard = (evt) => {
 const addPopup = document.querySelector('.add-popup')
 const addForm = document.querySelector('.add-form')
 
-const closeAddPopupBtn = document.querySelector('.button_popup_add_close')
+const closeAddPopupBtn = addPopup.querySelector('.button_type_close')
 const addButton = document.querySelector('.button_type_add')
 
-const titleField = addForm.querySelector('.add-form__field_type_title')
-const linkField = addForm.querySelector('.add-form__field_type_image-link')
+const titleField = addForm.querySelector('#add-form__field_type_title')
+const linkField = addForm.querySelector('#add-form__field_type_link')
 
 const openAddPopup = () => {
     togglePopup(addPopup)
