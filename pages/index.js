@@ -83,11 +83,11 @@ const createCardElement = (template, title, link, imageAlt = title) => {
 // открытие попапа с картинкой
 const openImagePopup = (title, link, imageAlt = title) => {
   const popup = document.querySelector('.image-popup')
-  const popupImage = popup.querySelector('.card__popup-image')
+  const popupImage = popup.querySelector('.image-popup__image')
   popupImage.src = link
   popupImage.alt = imageAlt
 
-  popup.querySelector('.card__popup-title').textContent = title
+  popup.querySelector('.image-popup__title').textContent = title
 
   openPopup(popup)
 }

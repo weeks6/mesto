@@ -1,0 +1,10 @@
+.image-popup__container {
+  position: relative;
+  max-width: 75vw;
+  width: fit-content;
+  width: -moz-fit-content;
+  height: 100%;
+  display: grid;
+  align-content: center;
+  margin: 0 auto;
+}
