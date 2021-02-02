@@ -1,4 +1,6 @@
+const pageElement = document.querySelector('.page')
 const cardList = document.querySelector('.elements')
+
 // очистка полей формы
 const clearFormFields = (...fields) => {
   for (let field of fields) {
@@ -8,12 +10,12 @@ const clearFormFields = (...fields) => {
 
 const openPopup = (popup) => {
   popup.classList.add('popup_opened')
-  document.querySelector('.page').classList.add('page_no-overflow')
+  pageElement.classList.add('page_no-overflow')
 }
 
 const closePopup = (popup) => {
   popup.classList.remove('popup_opened')
-  document.querySelector('.page').classList.remove('page_no-overflow')
+  pageElement.classList.remove('page_no-overflow')
 }
 
 // редактирование профиля
@@ -55,12 +57,13 @@ editForm.addEventListener('submit', submitEditForm)
 // создание карточки
 
 const cardTemplate = document.querySelector('#card-template').content
-const pageElement = document.querySelector('.page')
+
 const createCardElement = (template, title, link, imageAlt = title) => {
   const cardElement = template.querySelector('.card').cloneNode(true)
   const cardImage = cardElement.querySelector('.card__image')
+  const cardTitle = cardElement.querySelector('.card__title')
 
-  cardElement.querySelector('.card__title').textContent = title
+  cardTitle.textContent = title
   cardImage.src = link
   cardImage.alt = imageAlt
 
@@ -80,21 +83,23 @@ const createCardElement = (template, title, link, imageAlt = title) => {
   return cardElement
 }
 
+const imagePopup = document.querySelector('.image-popup')
+const imagePopupCloseBtn = imagePopup.querySelector('.button_type_close')
+const imagePopupImg = imagePopup.querySelector('.image-popup__image')
+const imagePopupTitle = imagePopup.querySelector('.image-popup__title')
+
 // открытие попапа с картинкой
 const openImagePopup = (title, link, imageAlt = title) => {
-  const popup = document.querySelector('.image-popup')
-  const popupImage = popup.querySelector('.image-popup__image')
-  popupImage.src = link
-  popupImage.alt = imageAlt
+  imagePopupImg.src = link
+  imagePopupImg.alt = imageAlt
 
-  popup.querySelector('.image-popup__title').textContent = title
+  imagePopupTitle.textContent = title
 
-  openPopup(popup)
+  openPopup(imagePopup)
 }
 
 // закрытие попапа с картинкой
-const imagePopup = document.querySelector('.image-popup')
-imagePopup.querySelector('.button_type_close').addEventListener('click', () => closePopup(imagePopup))
+imagePopupCloseBtn.addEventListener('click', () => closePopup(imagePopup))
 
 // удаление карточки
 const deleteCard = (evt) => {
