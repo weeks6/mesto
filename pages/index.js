@@ -1,180 +1,178 @@
-const pageElement = document.querySelector('.page')
-const cardList = document.querySelector('.elements')
+const pageElement = document.querySelector(".page");
+const cardList = document.querySelector(".elements");
 
 // очистка полей формы
-const clearFormFields = (...fields) => {
-  for (let field of fields) {
-    field.value = ''
-  }
-}
-
 const openPopup = (popup) => {
-  popup.classList.add('popup_opened')
-  pageElement.classList.add('page_no-overflow')
-}
+  popup.classList.add("popup_opened");
+  // класс, который убирает прокрутку body при открытом попапе
+  pageElement.classList.add("page_no-overflow");
+};
 
 const closePopup = (popup) => {
-  popup.classList.remove('popup_opened')
-  pageElement.classList.remove('page_no-overflow')
-}
+  popup.classList.remove("popup_opened");
+  // класс, который убирает прокрутку body при открытом попапе
+  pageElement.classList.remove("page_no-overflow");
+};
 
 // редактирование профиля
-const editButton = document.querySelector('.button_type_edit')
-const editForm = document.querySelector('.edit-form')
-const editPopup = document.querySelector('.edit-popup')
-const closeEditPopupBtn = editPopup.querySelector('.button_type_close')
-const nameEl = document.querySelector('.profile-info__name')
-const aboutEl = document.querySelector('.profile-info__about')
-const nameFormField = editForm.querySelector('#edit-form__field_type_name')
-const aboutFormField = editForm.querySelector('#edit-form__field_type_about')
+const editButton = document.querySelector(".button_type_edit");
+const editPopup = document.querySelector(".edit-popup");
+const closeEditPopupBtn = editPopup.querySelector(".button_type_close");
+const nameEl = document.querySelector(".profile-info__name");
+const aboutEl = document.querySelector(".profile-info__about");
+
+const editForm = document.forms["edit-form"];
+const nameField = editForm.elements["field_name"];
+const aboutField = editForm.elements["field_about"];
 
 const fillEditForm = () => {
-  nameFormField.value = nameEl.textContent
-  aboutFormField.value = aboutEl.textContent
-}
+  nameField.value = nameEl.textContent;
+  aboutField.value = aboutEl.textContent;
+};
 
 const openEditPopup = () => {
-  fillEditForm()
-  openPopup(editPopup)
-}
+  fillEditForm();
+  openPopup(editPopup);
+};
 
 const submitEditForm = (evt) => {
-  evt.preventDefault()
-  nameEl.textContent = nameFormField.value
-  aboutEl.textContent = aboutFormField.value
-  closePopup(editPopup)
-}
+  evt.preventDefault();
+  nameEl.textContent = nameField.value;
+  aboutEl.textContent = aboutField.value;
+  closePopup(editPopup);
+};
 
 const closeEditPopup = () => {
-  clearFormFields(nameFormField, aboutFormField)
-  closePopup(editPopup)
-}
+  editForm.reset();
+  closePopup(editPopup);
+};
 
-editButton.addEventListener('click', openEditPopup)
-closeEditPopupBtn.addEventListener('click', closeEditPopup)
-editForm.addEventListener('submit', submitEditForm)
+editButton.addEventListener("click", openEditPopup);
+closeEditPopupBtn.addEventListener("click", closeEditPopup);
+editForm.addEventListener("submit", submitEditForm);
 
 // создание карточки
 
-const cardTemplate = document.querySelector('#card-template').content
+const cardTemplate = document.querySelector("#card-template").content;
 
 const createCardElement = (template, title, link, imageAlt = title) => {
-  const cardElement = template.querySelector('.card').cloneNode(true)
-  const cardImage = cardElement.querySelector('.card__image')
-  const cardTitle = cardElement.querySelector('.card__title')
+  const cardElement = template.querySelector(".card").cloneNode(true);
+  const cardImage = cardElement.querySelector(".card__image");
+  const cardTitle = cardElement.querySelector(".card__title");
 
-  cardTitle.textContent = title
-  cardImage.src = link
-  cardImage.alt = imageAlt
-
-  // открытие попапа картинки
-  cardImage.addEventListener('click', () => openImagePopup(title, link))
+  cardTitle.textContent = title;
+  cardImage.src = link;
+  cardImage.alt = imageAlt;
 
   // лайк карточки
-  const likeButton = cardElement.querySelector('.button_type_like')
-  likeButton.addEventListener('click', () => {
-    likeButton.classList.toggle('button_type_like_active')
-  })
+  const handleLike = (evt) => {
+    if (evt.target.classList.contains("button_type_like")) {
+      evt.target.classList.toggle("button_type_like_active");
+    }
+  };
+  cardElement.addEventListener("click", handleLike);
+
+  // открытие попапа картинки
+  cardImage.addEventListener("click", () => openImagePopup(title, link));
 
   // удаление карточки
-  const deleteButton = cardElement.querySelector('.button_type_delete')
-  deleteButton.addEventListener('click', deleteCard)
+  const deleteButton = cardElement.querySelector(".button_type_delete");
+  deleteButton.addEventListener("click", deleteCard);
 
-  return cardElement
-}
+  return cardElement;
+};
 
-const imagePopup = document.querySelector('.image-popup')
-const imagePopupCloseBtn = imagePopup.querySelector('.button_type_close')
-const imagePopupImg = imagePopup.querySelector('.image-popup__image')
-const imagePopupTitle = imagePopup.querySelector('.image-popup__title')
+// попап с картинкой
+const imagePopup = document.querySelector(".image-popup");
+const imagePopupCloseBtn = imagePopup.querySelector(".button_type_close");
+const imagePopupImg = imagePopup.querySelector(".image-popup__image");
+const imagePopupTitle = imagePopup.querySelector(".image-popup__title");
 
 // открытие попапа с картинкой
 const openImagePopup = (title, link, imageAlt = title) => {
-  imagePopupImg.src = link
-  imagePopupImg.alt = imageAlt
+  imagePopupImg.src = link;
+  imagePopupImg.alt = imageAlt;
 
-  imagePopupTitle.textContent = title
+  imagePopupTitle.textContent = title;
 
-  openPopup(imagePopup)
-}
+  openPopup(imagePopup);
+};
 
 // закрытие попапа с картинкой
-imagePopupCloseBtn.addEventListener('click', () => closePopup(imagePopup))
+imagePopupCloseBtn.addEventListener("click", () => closePopup(imagePopup));
 
 // удаление карточки
 const deleteCard = (evt) => {
-  const cardToDelete = evt.target.closest('li.card') // элемент карточки
-  cardToDelete.remove()
-}
+  const cardToDelete = evt.target.closest("li.card"); // элемент карточки
+  cardToDelete.remove();
+};
 
-// создание новой карточки
+// создание новой карточкиы
+const addPopup = document.querySelector(".add-popup");
+const closeAddPopupBtn = addPopup.querySelector(".button_type_close");
+const addButton = document.querySelector(".button_type_add");
 
-const addPopup = document.querySelector('.add-popup')
-const addForm = document.querySelector('.add-form')
-
-const closeAddPopupBtn = addPopup.querySelector('.button_type_close')
-const addButton = document.querySelector('.button_type_add')
-
-const titleField = addForm.querySelector('#add-form__field_type_title')
-const linkField = addForm.querySelector('#add-form__field_type_link')
+const addForm = document.forms["add-form"];
+const titleField = addForm.elements["field_title"];
+const linkField = addForm.elements["field_link"];
 
 const openAddPopup = () => {
-  openPopup(addPopup)
-}
+  openPopup(addPopup);
+};
 
 const closeAddPopup = () => {
-  closePopup(addPopup)
-  clearFormFields(titleField, linkField)
-}
+  closePopup(addPopup);
+  addForm.reset();
+};
 
 const submitAddForm = (evt) => {
-  evt.preventDefault()
+  evt.preventDefault();
   cardList.prepend(
     createCardElement(cardTemplate, titleField.value, linkField.value)
-  )
-  closeAddPopup()
-}
+  );
+  closeAddPopup();
+};
 
-addButton.addEventListener('click', openAddPopup)
-closeAddPopupBtn.addEventListener('click', closeAddPopup)
-addForm.addEventListener('submit', submitAddForm)
+addButton.addEventListener("click", openAddPopup);
+closeAddPopupBtn.addEventListener("click", closeAddPopup);
+addForm.addEventListener("submit", submitAddForm);
 
 // начальный набор карточек
 const initialCards = [
   {
-    name: 'Архыз',
+    name: "Архыз",
     link:
-      'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
+      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
   },
   {
-    name: 'Челябинская область',
+    name: "Челябинская область",
     link:
-      'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg',
+      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
   },
   {
-    name: 'Иваново',
+    name: "Иваново",
     link:
-      'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg',
+      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
   },
   {
-    name: 'Камчатка',
+    name: "Камчатка",
     link:
-      'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg',
+      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
   },
   {
-    name: 'Холмогорский район',
+    name: "Холмогорский район",
     link:
-      'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg',
+      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
   },
   {
-    name: 'Байкал',
+    name: "Байкал",
     link:
-      'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg',
+      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
   },
-]
+];
 
 initialCards.forEach((cardContent) =>
   cardList.append(
     createCardElement(cardTemplate, cardContent.name, cardContent.link)
   )
-)
+);
