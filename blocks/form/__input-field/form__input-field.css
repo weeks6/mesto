@@ -1,0 +1,7 @@
+.form__input-field {
+  margin-top: 13px;
+}
+
+.form__text-field:first-of-type {
+  margin-top: 0;
+}

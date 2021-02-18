@@ -176,3 +176,9 @@ initialCards.forEach((cardContent) =>
     createCardElement(cardTemplate, cardContent.name, cardContent.link)
   )
 );
+
+enableValidation({
+  formSelector: ".form",
+  submitButtonSelector: ".button_type_save",
+  inactiveButtonClass: "button_type_save_disabled",
+});

@@ -10,6 +10,13 @@
   border-radius: 2px;
 }
 
+.button_type_save_disabled {
+  opacity: 0.2;
+  background-color: var(--background-color-light);
+  border: 1px solid var(--primary-color-dark);
+  border-radius: 2px;
+}
+
 @media (hover: hover) {
   .button_type_save:hover {
     opacity: 0.8;

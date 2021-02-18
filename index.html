@@ -52,7 +52,7 @@
           aria-label="Закрыть"
           class="button button_type_close"
         ></button>
-        <form class="form" name="edit-form">
+        <form class="form" name="edit-form" id="edit-form">
           <div class="form__inner">
             <h2 class="popup__title">Редактировать профиль</h2>
             <input
@@ -60,6 +60,8 @@
               class="form__text-field"
               name="field_name"
               placeholder="Имя"
+              minlength="2"
+              maxlength="40"
               required
             />
             <input
@@ -67,6 +69,8 @@
               class="form__text-field"
               name="field_about"
               placeholder="О себе"
+              minlength="2"
+              maxlength="200"
               required
             />
             <button class="button button_type_save" type="submit">
@@ -83,23 +87,35 @@
           aria-label="Закрыть"
           class="button button_type_close"
         ></button>
-        <form class="form" name="add-form">
+        <form class="form" name="add-form" id="add-form">
           <div class="form__inner">
             <h2 class="popup__title">Новое место</h2>
-            <input
-              type="text"
-              class="form__text-field"
-              name="field_title"
-              placeholder="Название"
-              required
-            />
-            <input
-              type="text"
+
+            <div class="form__input-field">
+              <input
+                type="text"
+                class="form__text-field"
+                name="field_title"
+                placeholder="Название"
+                minlength="2"
+                maxlength="30"
+                required
+              />
+              <span class="form__input-error"></span>
+            </div>
+
+            <div class="form__input-field">
+              <input
+              type="url"
               class="form__text-field"
               name="field_link"
               placeholder="Ссылка на картинку"
               required
             />
+              <span class="form__input-error"></span>
+            </div>
+            
+            
             <button class="button button_type_save" type="submit">
               Создать
             </button>
@@ -133,6 +149,7 @@
         </div>
       </li>
     </template>
+    <script src="./vendor/validate.js"></script>
     <script src="./pages/index.js"></script>
   </body>
 </html>
