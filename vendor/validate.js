@@ -7,14 +7,14 @@ const enableValidation = (options) => {
 
   const showInputError = (formElement, inputElement, errorMessage) => {
     const errorElement = formElement.querySelector(
-      `.${inputElement.name}-error`
+      `#${inputElement.name}-error`
     );
     errorElement.textContent = errorMessage;
   };
 
   const hideInputError = (formElement, inputElement) => {
     const errorElement = formElement.querySelector(
-      `.${inputElement.name}-error`
+      `#${inputElement.name}-error`
     );
     errorElement.textContent = " ";
   };
