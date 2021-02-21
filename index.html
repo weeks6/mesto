@@ -52,27 +52,36 @@
           aria-label="Закрыть"
           class="button button_type_close"
         ></button>
-        <form class="form" name="edit-form" id="edit-form">
+        <form class="form" name="edit-form" id="edit-form" novalidate>
           <div class="form__inner">
             <h2 class="popup__title">Редактировать профиль</h2>
-            <input
+            <div class="form__input-field">
+              <input
               type="text"
               class="form__text-field"
-              name="field_name"
+              name="field__name"
               placeholder="Имя"
               minlength="2"
               maxlength="40"
               required
             />
-            <input
+            <span class="form__input-error field__name-error"></span>
+            </div>
+            
+            <div class="form__input-field">
+              <input
               type="text"
               class="form__text-field"
-              name="field_about"
+              name="field__about"
               placeholder="О себе"
               minlength="2"
               maxlength="200"
               required
             />
+            <span class="form__input-error field__about-error"></span>
+
+            </div>
+            
             <button class="button button_type_save" type="submit">
               Сохранить
             </button>
@@ -87,7 +96,7 @@
           aria-label="Закрыть"
           class="button button_type_close"
         ></button>
-        <form class="form" name="add-form" id="add-form">
+        <form class="form" name="add-form" id="add-form" novalidate>
           <div class="form__inner">
             <h2 class="popup__title">Новое место</h2>
 
@@ -95,24 +104,24 @@
               <input
                 type="text"
                 class="form__text-field"
-                name="field_title"
+                name="field__title"
                 placeholder="Название"
                 minlength="2"
                 maxlength="30"
                 required
               />
-              <span class="form__input-error"></span>
+              <span class="form__input-error field__title-error"></span>
             </div>
 
             <div class="form__input-field">
               <input
               type="url"
               class="form__text-field"
-              name="field_link"
+              name="field__link"
               placeholder="Ссылка на картинку"
               required
             />
-              <span class="form__input-error"></span>
+              <span class="form__input-error field__link-error"></span>
             </div>
             
             
@@ -149,7 +158,7 @@
         </div>
       </li>
     </template>
-    <script src="./vendor/validate.js"></script>
+    <script src="./vendor/validate.js"></script>  
     <script src="./pages/index.js"></script>
   </body>
 </html>

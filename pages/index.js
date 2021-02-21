@@ -22,13 +22,14 @@ const nameEl = document.querySelector(".profile-info__name");
 const aboutEl = document.querySelector(".profile-info__about");
 
 const editForm = document.forms["edit-form"];
-const nameField = editForm.elements["field_name"];
-const aboutField = editForm.elements["field_about"];
+const nameField = editForm.elements["field__name"];
+const aboutField = editForm.elements["field__about"];
 
 const fillEditForm = () => {
   nameField.value = nameEl.textContent;
   aboutField.value = aboutEl.textContent;
 };
+fillEditForm();
 
 const openEditPopup = () => {
   fillEditForm();
@@ -113,8 +114,8 @@ const closeAddPopupBtn = addPopup.querySelector(".button_type_close");
 const addButton = document.querySelector(".button_type_add");
 
 const addForm = document.forms["add-form"];
-const titleField = addForm.elements["field_title"];
-const linkField = addForm.elements["field_link"];
+const titleField = addForm.elements["field__title"];
+const linkField = addForm.elements["field__link"];
 
 const openAddPopup = () => {
   openPopup(addPopup);
@@ -178,7 +179,15 @@ initialCards.forEach((cardContent) =>
 );
 
 enableValidation({
-  formSelector: ".form",
+  formSelector: "#add-form",
+  inputSelector: ".form__text-field",
+  submitButtonSelector: ".button_type_save",
+  inactiveButtonClass: "button_type_save_disabled",
+});
+
+enableValidation({
+  formSelector: "#edit-form",
+  inputSelector: ".form__text-field",
   submitButtonSelector: ".button_type_save",
   inactiveButtonClass: "button_type_save_disabled",
 });

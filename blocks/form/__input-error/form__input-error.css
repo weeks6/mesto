@@ -1,8 +1,16 @@
 .form__input-error {
+  display: block;
   font-family: "Inter", Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
   line-height: 15px;
   color: var(--accent-color);
+  transition: opacity 0.3s ease-in-out;
+  position: absolute;
+  margin-top: 5px;
+}
+
+.form__input-error_active {
+  opacity: 1;
 }
