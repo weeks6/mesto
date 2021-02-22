@@ -1,36 +1,50 @@
 const pageElement = document.querySelector(".page");
 const cardList = document.querySelector(".elements");
 
+const validationConfig = {
+  formSelector: ".form",
+  inputSelector: ".form__text-field",
+  submitButtonSelector: ".button_type_save",
+  inactiveButtonClass: "button_type_save_disabled",
+  inputErrorClass: "form__text-field_type_error",
+};
+
 const addPopup = document.querySelector(".add-popup");
 const editPopup = document.querySelector(".edit-popup");
+
+const closeOnOverlayClick = (evt, popup) => {
+  if (evt.target === popup) {
+    closePopup(popup);
+  }
+};
 
 const popups = document.querySelectorAll(".popup");
 Array.from(popups).forEach((popup) => {
   // закрытие попапов по клику на оверлей
-  const closeOnOverlayClick = (evt) => {
-    if (evt.target === popup) {
-      closePopup(popup);
-    }
-  };
-  popup.addEventListener("click", closeOnOverlayClick);
-
-  // закрытие попапов по Esc
-  const closeOnEsc = (evt) => {
-    if (evt.key === "Escape") {
-      closePopup(popup);
-    }
-  };
-  document.addEventListener("keydown", closeOnEsc);
+  popup.addEventListener("click", (evt) => closeOnOverlayClick(evt, popup));
 });
+
+const closeOnEscape = (evt) => {
+  const popup = document.querySelector(".popup_opened");
+  if (evt.key === "Escape") {
+    closePopup(popup);
+  }
+};
 
 // очистка полей формы
 const openPopup = (popup) => {
+  // закрытие попапов по Esc
+  document.addEventListener("keydown", closeOnEscape);
+
   popup.classList.add("popup_opened");
   // класс, который убирает прокрутку body при открытом попапе
   pageElement.classList.add("page_no-overflow");
 };
 
 const closePopup = (popup) => {
+  // закрытие попапов по Esc
+  document.removeEventListener("keydown", closeOnEscape);
+
   popup.classList.remove("popup_opened");
   // класс, который убирает прокрутку body при открытом попапе
   pageElement.classList.remove("page_no-overflow");
@@ -48,11 +62,13 @@ const aboutField = editForm.elements["field__about"];
 
 const fillEditForm = () => {
   nameField.value = nameEl.textContent;
+  nameField.dispatchEvent(new InputEvent("input"));
   aboutField.value = aboutEl.textContent;
+  aboutField.dispatchEvent(new InputEvent("input"));
 };
-fillEditForm();
 
 const openEditPopup = () => {
+  editForm.reset();
   fillEditForm();
   openPopup(editPopup);
 };
@@ -73,6 +89,13 @@ editButton.addEventListener("click", openEditPopup);
 closeEditPopupBtn.addEventListener("click", closeEditPopup);
 editForm.addEventListener("submit", submitEditForm);
 
+// лайк карточки
+const handleLike = (evt) => {
+  if (evt.target.classList.contains("button_type_like")) {
+    evt.target.classList.toggle("button_type_like_active");
+  }
+};
+
 // создание карточки
 
 const cardTemplate = document.querySelector("#card-template").content;
@@ -86,12 +109,6 @@ const createCardElement = (template, title, link, imageAlt = title) => {
   cardImage.src = link;
   cardImage.alt = imageAlt;
 
-  // лайк карточки
-  const handleLike = (evt) => {
-    if (evt.target.classList.contains("button_type_like")) {
-      evt.target.classList.toggle("button_type_like_active");
-    }
-  };
   cardElement.addEventListener("click", handleLike);
 
   // открытие попапа картинки
@@ -139,12 +156,13 @@ const titleField = addForm.elements["field__title"];
 const linkField = addForm.elements["field__link"];
 
 const openAddPopup = () => {
+  addForm.reset();
   openPopup(addPopup);
 };
 
 const closeAddPopup = () => {
-  closePopup(addPopup);
   addForm.reset();
+  closePopup(addPopup);
 };
 
 const submitAddForm = (evt) => {
@@ -160,55 +178,10 @@ closeAddPopupBtn.addEventListener("click", closeAddPopup);
 addForm.addEventListener("submit", submitAddForm);
 
 // начальный набор карточек
-const initialCards = [
-  {
-    name: "Архыз",
-    link:
-      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-  },
-  {
-    name: "Челябинская область",
-    link:
-      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    name: "Иваново",
-    link:
-      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    name: "Камчатка",
-    link:
-      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    name: "Холмогорский район",
-    link:
-      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    name: "Байкал",
-    link:
-      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-];
-
 initialCards.forEach((cardContent) =>
   cardList.append(
     createCardElement(cardTemplate, cardContent.name, cardContent.link)
   )
 );
 
-enableValidation({
-  formSelector: "#add-form",
-  inputSelector: ".form__text-field",
-  submitButtonSelector: ".button_type_save",
-  inactiveButtonClass: "button_type_save_disabled",
-});
-
-enableValidation({
-  formSelector: "#edit-form",
-  inputSelector: ".form__text-field",
-  submitButtonSelector: ".button_type_save",
-  inactiveButtonClass: "button_type_save_disabled",
-});
+enableValidation(validationConfig);

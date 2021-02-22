@@ -1,10 +1,4 @@
 const enableValidation = (options) => {
-  const formElement = document.querySelector(options.formSelector);
-
-  formElement.addEventListener("submit", function (evt) {
-    evt.preventDefault();
-  });
-
   const showInputError = (formElement, inputElement, errorMessage) => {
     const errorElement = formElement.querySelector(
       `#${inputElement.name}-error`
@@ -16,7 +10,7 @@ const enableValidation = (options) => {
     const errorElement = formElement.querySelector(
       `#${inputElement.name}-error`
     );
-    errorElement.textContent = " ";
+    errorElement.textContent = "";
   };
 
   const toggleButtonState = (inputList, buttonElement) => {
@@ -36,8 +30,10 @@ const enableValidation = (options) => {
 
   const checkInputValidity = (formElement, inputElement) => {
     if (!inputElement.validity.valid) {
+      inputElement.classList.add(options.inputErrorClass);
       showInputError(formElement, inputElement, inputElement.validationMessage);
     } else {
+      inputElement.classList.remove(options.inputErrorClass);
       hideInputError(formElement, inputElement);
     }
   };
@@ -50,16 +46,33 @@ const enableValidation = (options) => {
       options.submitButtonSelector
     );
 
-    toggleButtonState(inputList, buttonElement);
+    formElement.addEventListener("submit", (evt) => {
+      evt.preventDefault();
+    });
+
+    formElement.addEventListener("reset", (evt) => {
+      inputList.forEach((inputElement) => {
+        inputElement.classList.remove(options.inputErrorClass);
+        hideInputError(formElement, inputElement);
+        toggleButtonState(inputList, buttonElement);
+      });
+    });
+
+    // toggleButtonState(inputList, buttonElement);
 
     inputList.forEach((inputElement) => {
       inputElement.addEventListener("input", () => {
         checkInputValidity(formElement, inputElement);
-
         toggleButtonState(inputList, buttonElement);
       });
     });
   };
 
-  setEventListeners(formElement);
+  const formElements = Array.from(
+    document.querySelectorAll(options.formSelector)
+  );
+
+  formElements.forEach((formElement) => {
+    setEventListeners(formElement);
+  });
 };

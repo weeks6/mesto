@@ -19,7 +19,3 @@
   overflow: hidden;
   max-width: 100%;
 }
-
-.form__text-field:invalid {
-  border-bottom: 1px solid var(--accent-color);
-}

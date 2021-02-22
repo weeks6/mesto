@@ -48,4 +48,5 @@
 @import "../blocks/form/__text-field/form__text-field.css";
 @import "../blocks/form/__input-field/form__input-field.css";
 @import "../blocks/form/__input-error/form__input-error.css";
+@import "../blocks/form/__text-field/_type/form__text-field_type_error.css";
 @import "../blocks/form/__inner/form__inner.css";
