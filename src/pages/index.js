@@ -1,6 +1,10 @@
-import { Card } from "./Card.js";
-import { FormValidator } from "./FormValidator.js";
-import { initialCards } from "./initialCards.js";
+import "./index.css";
+
+import { Card } from "../scripts/components/Card.js";
+import { FormValidator } from "../scripts/utils/FormValidator.js";
+import { initialCards } from "../scripts/utils/constants.js";
+import { PopupWithForm } from "../scripts/components/PopupWithForm.js";
+import { PopupWithImage } from "../scripts/components/PopupWithImage.js";
 
 const pageElement = document.querySelector(".page");
 const cardList = document.querySelector(".elements");
@@ -25,11 +29,6 @@ const addForm = document.forms["add-form"];
 const titleField = addForm.elements["field__title"];
 const linkField = addForm.elements["field__link"];
 
-const imagePopup = document.querySelector(".image-popup");
-const imagePopupImage = imagePopup.querySelector(".image-popup__image");
-const imagePopupTitle = imagePopup.querySelector(".image-popup__title");
-const imagePopupCloseBtn = imagePopup.querySelector(".button_type_close");
-
 const validationConfig = {
   inputSelector: ".form__text-field",
   submitButtonSelector: ".button_type_save",
@@ -43,14 +42,20 @@ formElements.forEach((formElement) => {
   formValidator.enableValidation();
 });
 
-/* закрытие попапа с картинкой */
-imagePopupCloseBtn.addEventListener("click", () => closePopup(imagePopup));
-
-const handleCardClick = (title, src) => {
-  imagePopupImage.src = src;
-  imagePopupTitle.textContent = title;
-  openPopup(imagePopup);
+/* инициализация попапов классами */
+const imagePopup = new PopupWithImage(".image-popup");
+const handleCardClick = (src, title) => {
+  imagePopup.open(src, title);
 };
+
+const submitAddForm = () => {
+  cardList.prepend(
+    createCard({ name: titleField.value, link: linkField.value })
+  );
+};
+
+const addFormPopup = new PopupWithForm(".add-popup", ".page", submitAddForm);
+addButton.addEventListener("click", addFormPopup.open);
 
 const createCard = (cardContent) => {
   return new Card(
@@ -78,24 +83,6 @@ const closePopup = (popup) => {
   popup.classList.remove("popup_opened");
   // класс, который убирает прокрутку body при открытом попапе
   pageElement.classList.remove("page_no-overflow");
-};
-
-const closeOnOverlayClick = (evt, popup) => {
-  if (evt.target === popup) {
-    closePopup(popup);
-  }
-};
-
-Array.from(popups).forEach((popup) => {
-  // закрытие попапов по клику на оверлей
-  popup.addEventListener("click", (evt) => closeOnOverlayClick(evt, popup));
-});
-
-const closeOnEscape = (evt) => {
-  const popup = document.querySelector(".popup_opened");
-  if (evt.key === "Escape") {
-    closePopup(popup);
-  }
 };
 
 // редактирование профиля
@@ -129,26 +116,8 @@ editButton.addEventListener("click", openEditPopup);
 closeEditPopupBtn.addEventListener("click", closeEditPopup);
 editForm.addEventListener("submit", submitEditForm);
 
-const openAddPopup = () => {
-  addForm.reset();
-  openPopup(addPopup);
-};
-
-const closeAddPopup = () => {
-  closePopup(addPopup);
-};
-
-const submitAddForm = (evt) => {
-  evt.preventDefault();
-  cardList.prepend(
-    createCard({ name: titleField.value, link: linkField.value })
-  );
-  closeAddPopup();
-};
-
-addButton.addEventListener("click", openAddPopup);
-closeAddPopupBtn.addEventListener("click", closeAddPopup);
-addForm.addEventListener("submit", submitAddForm);
+// addButton.addEventListener("click", openAddPopup);
+// closeAddPopupBtn.addEventListener("click", closeAddPopup);
 
 initialCards.forEach((cardContent) => {
   cardList.append(createCard(cardContent));
