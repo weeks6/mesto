@@ -21,12 +21,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install and Build
-        run: |
-          uses: actions/setup-node@v1
-          with:
-            node-version: '14.x'
-          npm install
-          npm run-script build
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+      - run: npm install
+      - run: npm run-script build
       
       - name: Make new repo and Commit
         run: |
