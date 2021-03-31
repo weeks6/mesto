@@ -44,9 +44,15 @@ formElements.forEach((formElement) => {
 
 /* инициализация попапов классами */
 const imagePopup = new PopupWithImage(".image-popup");
-const handleCardClick = (src, title) => {
-  imagePopup.open(src, title);
-};
+function handleCardClick(evt, { title, src }) {
+  imagePopup.open({ title, src });
+}
+
+const addFormPopup = new PopupWithForm(".add-popup", submitAddForm);
+addButton.addEventListener("click", addFormPopup.open.bind(addFormPopup));
+
+const editFormPopup = new PopupWithForm(".edit-popup", submitEditForm);
+editButton.addEventListener("click", editFormPopup.open.bind(editFormPopup));
 
 const submitAddForm = () => {
   cardList.prepend(
@@ -54,35 +60,15 @@ const submitAddForm = () => {
   );
 };
 
-const addFormPopup = new PopupWithForm(".add-popup", ".page", submitAddForm);
-addButton.addEventListener("click", addFormPopup.open);
-
 const createCard = (cardContent) => {
-  return new Card(
-    {
-      title: cardContent.name,
-      src: cardContent.link,
-    },
-    "#card-template",
-    handleCardClick
-  ).generateCard();
-};
+  const cardData = {
+    title: cardContent.name,
+    src: cardContent.link,
+  };
 
-// очистка полей формы
-export const openPopup = (popup) => {
-  // закрытие попапов по Esc
-  document.addEventListener("keydown", closeOnEscape);
-  popup.classList.add("popup_opened");
-  // класс, который убирает прокрутку body при открытом попапе
-  pageElement.classList.add("page_no-overflow");
-};
-
-const closePopup = (popup) => {
-  // закрытие попапов по Esc
-  document.removeEventListener("keydown", closeOnEscape);
-  popup.classList.remove("popup_opened");
-  // класс, который убирает прокрутку body при открытом попапе
-  pageElement.classList.remove("page_no-overflow");
+  return new Card(cardData, "#card-template", () => {
+    imagePopup.open(cardData);
+  }).generateCard();
 };
 
 // редактирование профиля
@@ -93,17 +79,10 @@ const fillEditForm = () => {
   aboutField.dispatchEvent(new InputEvent("input"));
 };
 
-const openEditPopup = () => {
-  /* не думаю, что тут есть смысл отчищать форму,
-  т.к. fillEditForm() заполянет все поля формы */
-
-  fillEditForm();
-  openPopup(editPopup);
-};
-
-const closeEditPopup = () => {
-  closePopup(editPopup);
-};
+// const openEditPopup = () => {
+//   fillEditForm();
+//   openPopup(editPopup);
+// };
 
 const submitEditForm = (evt) => {
   evt.preventDefault();
@@ -112,12 +91,7 @@ const submitEditForm = (evt) => {
   closeEditPopup();
 };
 
-editButton.addEventListener("click", openEditPopup);
-closeEditPopupBtn.addEventListener("click", closeEditPopup);
 editForm.addEventListener("submit", submitEditForm);
-
-// addButton.addEventListener("click", openAddPopup);
-// closeAddPopupBtn.addEventListener("click", closeAddPopup);
 
 initialCards.forEach((cardContent) => {
   cardList.append(createCard(cardContent));

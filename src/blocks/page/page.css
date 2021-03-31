@@ -9,5 +9,5 @@
 }
 
 .page_no-overflow {
-  overflow-y: hidden;
+  overflow-y: scroll;
 }
