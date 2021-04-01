@@ -1,4 +1,4 @@
-export class UserInfo {
+export default class UserInfo {
   constructor({ titleSelector, aboutSelector }) {
     this._titleElement = document.querySelector(titleSelector);
     this._aboutElement = document.querySelector(aboutSelector);
@@ -6,7 +6,7 @@ export class UserInfo {
 
   getUserInfo() {
     return {
-      title: this._titleElement.textConten,
+      title: this._titleElement.textContent,
       about: this._aboutElement.textContent,
     };
   }

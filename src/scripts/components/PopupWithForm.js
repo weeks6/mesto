@@ -1,29 +1,28 @@
 import Popup from "./Popup.js";
 
-export class PopupWithForm extends Popup {
+export default class PopupWithForm extends Popup {
   constructor(selector, submitHandler) {
     super(selector);
     this._submitHandler = submitHandler;
+    this.submitFormHandler = this._submitFormHandler.bind(this);
     this._form = this._popup.querySelector(".form");
+    this.open = this._open.bind(this);
   }
 
-  _getInputValues() {
-    console.log(this._form);
-    return;
+  _open() {
+    this._form.reset();
+    super._open();
   }
 
   _submitFormHandler() {
     this._submitHandler();
+    this.close();
+    // без доп ресета на сабмит кнопка остается активной, хотя у всех полей valid === false
     this._form.reset();
   }
 
   _setEventListeners() {
-    this._form.addEventListener("submit", this._submitFormHandler);
+    this._form.addEventListener("submit", this.submitFormHandler);
     super._setEventListeners();
-  }
-
-  close() {
-    this._form.reset();
-    super.close();
   }
 }
