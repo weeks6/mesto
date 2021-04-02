@@ -14,6 +14,7 @@ import {
   addButton,
   editButton,
   editForm,
+  addForm,
   linkField,
   nameField,
   titleField,
@@ -48,14 +49,16 @@ const cardList = new Section(
 
 cardList.renderItems();
 
-/* инициализация попапов классами */
-
 const submitAddForm = () => {
   cardList.addItem(
     createCard({ name: titleField.value, link: linkField.value })
   );
+  addForm.reset();
 };
-const addFormPopup = new PopupWithForm(".add-popup", submitAddForm);
+const addFormPopup = new PopupWithForm(".add-popup", () => {
+  submitAddForm();
+  addFormPopup.close();
+});
 addButton.addEventListener("click", addFormPopup.open);
 
 const userInfo = new UserInfo({
@@ -80,5 +83,9 @@ const openEditPopup = () => {
   aboutField.value = editFormData.about;
   aboutField.dispatchEvent(new InputEvent("input"));
 };
-const editFormPopup = new PopupWithForm(".edit-popup", submitEditForm);
+
+const editFormPopup = new PopupWithForm(".edit-popup", () => {
+  submitEditForm();
+  editFormPopup.close();
+});
 editButton.addEventListener("click", openEditPopup);
