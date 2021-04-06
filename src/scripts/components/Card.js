@@ -3,6 +3,7 @@ export default class Card {
     this._cardSelector = cardSelector;
     this._title = data.title;
     this._src = data.src;
+    this._likes = data.likes;
     this._handleCardClick = handleCardClick;
   }
 
@@ -11,10 +12,12 @@ export default class Card {
 
     const cardImage = this._element.querySelector(".card__image");
     const cardTitle = this._element.querySelector(".card__title");
+    const cardLikes = this._element.querySelector(".card__like-counter");
 
     cardTitle.textContent = this._title;
     cardImage.src = this._src;
     cardImage.alt = this._title;
+    cardLikes.textContent = this._likes.length;
 
     this._setEventListeners();
 

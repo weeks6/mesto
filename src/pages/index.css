@@ -30,6 +30,8 @@
 @import "../blocks/card/__image/card__image.css";
 @import "../blocks/card/__info/card__info.css";
 @import "../blocks/card/__title/card__title.css";
+@import "../blocks/card/__like-wrapper/card__like-wrapper.css";
+@import "../blocks/card/__like-counter/card__like-counter.css";
 @import "../blocks/button/_type/button_type_delete.css";
 
 @import "../blocks/image-popup/__container/image-popup__container.css";

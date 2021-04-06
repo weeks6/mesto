@@ -38,6 +38,9 @@ export const validationConfig = {
   inputErrorClass: "form__text-field_type_error",
 };
 
+export const authToken = "bedcf061-ec3c-4659-8ef2-ecacae078c05";
+export const baseUrl = "https://mesto.nomoreparties.co/v1/cohort-22";
+
 export const formElements = Array.from(document.forms);
 
 export const editButton = document.querySelector(".button_type_edit");

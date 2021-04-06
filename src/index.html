@@ -16,20 +16,20 @@
     <main class="main container">
       <section class="profile">
         <img
-          src="<%=require('./images/profile-picture.png')%>"
+          src=""
           class="avatar"
           alt="Картинка профиля"
         />
         <div class="profile-info">
           <div class="profile-info__inner">
-            <h1 class="profile-info__name">Жак-Ив Кусто</h1>
+            <h1 class="profile-info__name"></h1>
             <button
               type="button"
               aria-label="Редактировать"
               class="button button_type_edit"
             ></button>
           </div>
-          <p class="profile-info__about">Исследователь океана</p>
+          <p class="profile-info__about"></p>
         </div>
         <button
           type="button"
@@ -149,11 +149,14 @@
         <img src="/" alt=" " class="card__image card__main-image" />
         <div class="card__info">
           <h2 class="card__title"></h2>
-          <button
-            type="button"
-            aria-label="Нравится"
-            class="button button_type_like"
-          ></button>
+          <div class="card__like-wrapper">
+            <button
+              type="button"
+              aria-label="Нравится"
+              class="button button_type_like"
+            ></button>
+            <span class="card__like-counter">0</span>
+          </div>
         </div>
       </li>
     </template>

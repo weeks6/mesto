@@ -6,6 +6,7 @@ import PopupWithForm from "../scripts/components/PopupWithForm.js";
 import PopupWithImage from "../scripts/components/PopupWithImage.js";
 import Section from "../scripts/components/Section.js";
 import UserInfo from "../scripts/components/UserInfo.js";
+import Api from "../scripts/utils/Api.js";
 import {
   initialCards,
   validationConfig,
@@ -17,6 +18,8 @@ import {
   linkField,
   nameField,
   titleField,
+  baseUrl,
+  authToken,
 } from "../scripts/utils/constants.js";
 
 /* валидация форм */
@@ -27,10 +30,11 @@ formElements.forEach((formElement) => {
 
 const imagePopup = new PopupWithImage(".image-popup");
 
-const createCard = (cardContent) => {
+const createCard = ({ name, link, likes }) => {
   const cardData = {
-    title: cardContent.name,
-    src: cardContent.link,
+    title: name,
+    src: link,
+    likes: likes,
   };
 
   return new Card(cardData, "#card-template", () => {
@@ -38,44 +42,68 @@ const createCard = (cardContent) => {
   }).generateCard();
 };
 
+const api = new Api({
+  baseUrl,
+  headers: {
+    authorization: authToken,
+    "Content-Type": "application/json",
+  },
+});
+
 const cardList = new Section(
   {
-    items: initialCards,
+    items: [],
     renderer: (item) => cardList.addItem(createCard(item)),
   },
   ".elements"
 );
 
-cardList.renderItems();
+api.getInitialCards().then((cards) => {
+  cards.forEach((card) => cardList.addItem(createCard(card)));
+});
 
-/* инициализация попапов классами */
-
+/* инициализация попапов */
 const submitAddForm = () => {
-  cardList.addItem(
-    createCard({ name: titleField.value, link: linkField.value })
-  );
+  api
+    .createCard({ name: titleField.value, link: linkField.value })
+    .then((card) => {
+      cardList.addItem(createCard(card));
+    });
 };
 const addFormPopup = new PopupWithForm(".add-popup", submitAddForm);
 addButton.addEventListener("click", addFormPopup.open);
 
+// setup user info
 const userInfo = new UserInfo({
-  titleSelector: ".profile-info__name",
+  nameSelector: ".profile-info__name",
   aboutSelector: ".profile-info__about",
+  imageSelector: ".avatar",
+});
+
+api.getUserInfo().then((data) => {
+  userInfo.setUserInfo({
+    name: data.name,
+    about: data.about,
+    src: data.avatar,
+  });
 });
 
 const submitEditForm = () => {
-  const titleField = editForm.elements["field__name"];
+  const nameField = editForm.elements["field__name"];
   const aboutField = editForm.elements["field__about"];
-  userInfo.setUserInfo({
-    title: titleField.value,
-    about: aboutField.value,
+
+  api.updateUserInfo(nameField.value, aboutField.value).then((user) => {
+    userInfo.setUserInfo({
+      name: user.name,
+      about: user.about,
+    });
   });
 };
 
 const openEditPopup = () => {
   const editFormData = userInfo.getUserInfo();
   editFormPopup.open();
-  nameField.value = editFormData.title;
+  nameField.value = editFormData.name;
   nameField.dispatchEvent(new InputEvent("input"));
   aboutField.value = editFormData.about;
   aboutField.dispatchEvent(new InputEvent("input"));
