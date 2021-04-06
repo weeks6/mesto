@@ -5,20 +5,26 @@ export default class Card {
     this._src = data.src;
     this._likes = data.likes;
     this._handleCardClick = handleCardClick;
+    this._handleLikeButton = this._handleLikeButton.bind(this);
+    this._handleDeleteButton = this._handleDeleteButton.bind(this);
   }
 
   generateCard() {
     this._element = this._getTemplate();
 
-    const cardImage = this._element.querySelector(".card__image");
-    const cardTitle = this._element.querySelector(".card__title");
-    const cardLikes = this._element.querySelector(".card__like-counter");
+    this._imageElement = this._element.querySelector(".card__image");
+    this._titleElement = this._element.querySelector(".card__title");
+    this._likesElement = this._element.querySelector(".card__like-counter");
+    this._likeButtonElement = this._element.querySelector(".button_type_like");
+    this._deleteButtonElement = this._element.querySelector(
+      ".button_type_delete"
+    );
 
-    cardTitle.textContent = this._title;
-    cardImage.src = this._src;
-    cardImage.alt = this._title;
-    cardLikes.textContent = this._likes.length;
+    this._titleElement.textContent = this._title;
+    this._imageElement.src = this._src;
+    this._imageElement.alt = this._title;
 
+    this._likesElement.textContent = this._likes.length;
     this._setEventListeners();
 
     return this._element;
@@ -39,24 +45,19 @@ export default class Card {
   }
 
   _handleLikeButton() {
-    this._element
-      .querySelector(".button_type_like")
-      .classList.toggle("button_type_like_active");
+    this._likeButtonElement.classList.toggle("button_type_like_active");
   }
 
   _setEventListeners() {
-    this._element
-      .querySelector(".button_type_like")
-      .addEventListener("click", this._handleLikeButton.bind(this));
+    this._likeButtonElement.addEventListener("click", this._handleLikeButton);
 
-    this._element
-      .querySelector(".button_type_delete")
-      .addEventListener("click", this._handleDeleteButton.bind(this));
+    this._deleteButtonElement.addEventListener(
+      "click",
+      this._handleDeleteButton
+    );
 
-    this._element
-      .querySelector(".card__image")
-      .addEventListener("click", () =>
-        this._handleCardClick(this._src, this._title)
-      );
+    this._imageElement.addEventListener("click", () =>
+      this._handleCardClick(this._src, this._title)
+    );
   }
 }

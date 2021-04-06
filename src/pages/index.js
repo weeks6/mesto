@@ -15,6 +15,7 @@ import {
   addButton,
   editButton,
   editForm,
+  addForm,
   linkField,
   nameField,
   titleField,
@@ -70,7 +71,10 @@ const submitAddForm = () => {
       cardList.addItem(createCard(card));
     });
 };
-const addFormPopup = new PopupWithForm(".add-popup", submitAddForm);
+const addFormPopup = new PopupWithForm(".add-popup", () => {
+  submitAddForm();
+  addFormPopup.close();
+});
 addButton.addEventListener("click", addFormPopup.open);
 
 // setup user info
@@ -108,5 +112,9 @@ const openEditPopup = () => {
   aboutField.value = editFormData.about;
   aboutField.dispatchEvent(new InputEvent("input"));
 };
-const editFormPopup = new PopupWithForm(".edit-popup", submitEditForm);
+
+const editFormPopup = new PopupWithForm(".edit-popup", () => {
+  submitEditForm();
+  editFormPopup.close();
+});
 editButton.addEventListener("click", openEditPopup);
