@@ -1,10 +1,23 @@
 export default class Card {
-  constructor(data, cardSelector, handleCardClick) {
+  constructor(
+    { _id, name, link, likes, owner },
+    currentUserId,
+    cardSelector,
+    popupHandler,
+    deleteHandler,
+    likeHandler
+  ) {
     this._cardSelector = cardSelector;
-    this._title = data.title;
-    this._src = data.src;
-    this._likes = data.likes;
-    this._handleCardClick = handleCardClick;
+    this._id = _id;
+    this._title = name;
+    this._src = link;
+    this._likes = likes;
+    this._currentUserId = currentUserId;
+    this._isOwner = this._currentUserId === owner._id;
+    this._popupHandler = popupHandler;
+    this._deleteHandler = deleteHandler;
+    this._likeHandler = likeHandler;
+    this._handleCardClick = this._handleCardClick.bind(this);
     this._handleLikeButton = this._handleLikeButton.bind(this);
     this._handleDeleteButton = this._handleDeleteButton.bind(this);
   }
@@ -23,11 +36,22 @@ export default class Card {
     this._titleElement.textContent = this._title;
     this._imageElement.src = this._src;
     this._imageElement.alt = this._title;
-
     this._likesElement.textContent = this._likes.length;
-    this._setEventListeners();
 
+    if (this.isLikedBy(this._currentUserId)) {
+      this._likeButtonElement.classList.add("button_type_like_active");
+    }
+
+    this._setEventListeners();
     return this._element;
+  }
+
+  getElement() {
+    return this._element;
+  }
+
+  isLikedBy(userId) {
+    return this._likes.find((user) => user._id === userId);
   }
 
   _getTemplate() {
@@ -40,24 +64,37 @@ export default class Card {
   }
 
   _handleDeleteButton() {
-    const parentElement = this._element.closest("li.card");
-    parentElement.remove();
+    this._deleteHandler();
   }
 
   _handleLikeButton() {
-    this._likeButtonElement.classList.toggle("button_type_like_active");
+    this._likeHandler().then((res) => {
+      this._likes = res.likes;
+      this._likesElement.textContent = this._likes.length;
+      if (this.isLikedBy(this._currentUserId)) {
+        this._likeButtonElement.classList.add("button_type_like_active");
+      } else {
+        this._likeButtonElement.classList.remove("button_type_like_active");
+      }
+    });
+  }
+
+  _handleCardClick() {
+    this._popupHandler(this._src, this._title);
   }
 
   _setEventListeners() {
     this._likeButtonElement.addEventListener("click", this._handleLikeButton);
 
-    this._deleteButtonElement.addEventListener(
-      "click",
-      this._handleDeleteButton
-    );
+    if (this._isOwner) {
+      this._deleteButtonElement.addEventListener(
+        "click",
+        this._handleDeleteButton
+      );
+    } else {
+      this._deleteButtonElement.remove();
+    }
 
-    this._imageElement.addEventListener("click", () =>
-      this._handleCardClick(this._src, this._title)
-    );
+    this._imageElement.addEventListener("click", this._handleCardClick);
   }
 }

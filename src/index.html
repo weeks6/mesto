@@ -15,11 +15,17 @@
     </header>
     <main class="main container">
       <section class="profile">
-        <img
-          src=""
-          class="avatar"
-          alt="Картинка профиля"
-        />
+        <div class="avatar">
+
+          <img
+            src=""
+            class="avatar__image"
+            alt="Картинка профиля"
+          />
+          <button class="button avatar__edit" aria-label="Редактировать аватар">
+
+          </button>
+        </div>
         <div class="profile-info">
           <div class="profile-info__inner">
             <h1 class="profile-info__name"></h1>
@@ -140,6 +146,54 @@
         ></button>
         <img src="/" alt=" " class="image-popup__image" />
         <h2 class="image-popup__title"></h2>
+      </div>
+    </div>
+    <div class="popup confirm-delete-popup">
+      <div class="popup__container container">
+        <button
+          type="button"
+          aria-label="Закрыть"
+          class="button button_type_close"
+        ></button>
+        <form class="form">
+
+          <div class="form__inner">
+            <h2 class="popup__title">Вы уверены?</h2>
+            <button class="button button_type_save" >
+              Да
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="popup edit-avatar-popup">
+      <div class="popup__container container">
+        <button
+          type="button"
+          aria-label="Закрыть"
+          class="button button_type_close"
+        ></button>
+        <form class="form" name="edit-avatar-form" id="edit-avatar-form" novalidate>
+          <div class="form__inner">
+            <h2 class="popup__title">Обновить аватар</h2>
+
+            <div class="form__input-field">
+              <input
+              type="url"
+              class="form__text-field"
+              name="field__avatar"
+              placeholder="Ссылка на картинку"
+              required
+            />
+              <span class="form__input-error" id="field__avatar-error"></span>
+            </div>
+            
+            <button class="button button_type_save" type="submit">
+              Сохранить
+            </button>
+          </div>
+        </form>
       </div>
     </div>
 

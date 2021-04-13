@@ -1,36 +1,3 @@
-export const initialCards = [
-  {
-    name: "Архыз",
-    link:
-      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-  },
-  {
-    name: "Челябинская область",
-    link:
-      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    name: "Иваново",
-    link:
-      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    name: "Камчатка",
-    link:
-      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    name: "Холмогорский район",
-    link:
-      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    name: "Байкал",
-    link:
-      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-];
-
 export const validationConfig = {
   inputSelector: ".form__text-field",
   submitButtonSelector: ".button_type_save",
@@ -44,6 +11,10 @@ export const baseUrl = "https://mesto.nomoreparties.co/v1/cohort-22";
 export const formElements = Array.from(document.forms);
 
 export const editButton = document.querySelector(".button_type_edit");
+
+export const editAvatarButton = document.querySelector(".avatar__edit");
+export const editAvatarForm = document.forms["edit-avatar-form"];
+export const avatarField = editAvatarForm.elements["field__avatar"];
 
 export const editForm = document.forms["edit-form"];
 export const nameField = editForm.elements["field__name"];

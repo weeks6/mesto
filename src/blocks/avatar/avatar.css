@@ -1,7 +1,9 @@
 .avatar {
+  position: relative;
   width: 120px;
   height: 120px;
-  border-radius: 100%;
-  object-fit: cover;
-  object-position: 50% 50%;
+}
+
+.avatar:hover .avatar__edit {
+  opacity: 0.8;
 }

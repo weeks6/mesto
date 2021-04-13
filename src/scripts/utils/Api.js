@@ -38,7 +38,7 @@ export default class Api {
       .catch((err) => console.log(err));
   }
 
-  getInitialCards() {
+  fetchCards() {
     return fetch(`${this.baseUrl}/cards`, {
       method: "GET",
       headers: this.headers,
@@ -67,7 +67,73 @@ export default class Api {
           return res.json();
         }
 
-        return Promise.resolve(`Ошибка: ${res.status}`);
+        return Promise.resolve(`Ошибка: ${res.statusText}`);
+      })
+      .catch((err) => console.log(err));
+  }
+
+  deleteCard(cardId) {
+    return fetch(`${this.baseUrl}/cards/${cardId}`, {
+      method: "DELETE",
+      headers: this.headers,
+    })
+      .then((res) => {
+        if (res.ok) {
+          return {
+            cardId,
+            ...res.json(),
+          };
+        }
+
+        return Promise.resolve(`Ошибка: ${res.statusText}`);
+      })
+      .catch((err) => console.log(err));
+  }
+
+  likeCard(cardId) {
+    return fetch(`${this.baseUrl}/cards/likes/${cardId}`, {
+      method: "PUT",
+      headers: this.headers,
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+
+        return Promise.resolve(`Ошибка: ${res.statusText}`);
+      })
+      .catch((err) => console.log(err));
+  }
+
+  dislikeCard(cardId) {
+    return fetch(`${this.baseUrl}/cards/likes/${cardId}`, {
+      method: "DELETE",
+      headers: this.headers,
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+
+        return Promise.resolve(`Ошибка: ${res.statusText}`);
+      })
+      .catch((err) => console.log(err));
+  }
+
+  updateUserAvatar(avatar) {
+    return fetch(`${this.baseUrl}/users/me/avatar`, {
+      method: "PATCH",
+      headers: this.headers,
+      body: JSON.stringify({
+        avatar,
+      }),
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+
+        return Promise.resolve(`Ошибка: ${res.statusText}`);
       })
       .catch((err) => console.log(err));
   }
