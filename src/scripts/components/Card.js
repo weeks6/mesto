@@ -68,15 +68,17 @@ export default class Card {
   }
 
   _handleLikeButton() {
-    this._likeHandler().then((res) => {
-      this._likes = res.likes;
-      this._likesElement.textContent = this._likes.length;
-      if (this.isLikedBy(this._currentUserId)) {
-        this._likeButtonElement.classList.add("button_type_like_active");
-      } else {
-        this._likeButtonElement.classList.remove("button_type_like_active");
-      }
-    });
+    this._likeHandler()
+      .then((res) => {
+        this._likes = res.likes;
+        this._likesElement.textContent = this._likes.length;
+        if (this.isLikedBy(this._currentUserId)) {
+          this._likeButtonElement.classList.add("button_type_like_active");
+        } else {
+          this._likeButtonElement.classList.remove("button_type_like_active");
+        }
+      })
+      .catch((err) => console.log(err));
   }
 
   _handleCardClick() {

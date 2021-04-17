@@ -17,11 +17,10 @@ export const editAvatarForm = document.forms["edit-avatar-form"];
 export const avatarField = editAvatarForm.elements["field__avatar"];
 
 export const editForm = document.forms["edit-form"];
-export const nameField = editForm.elements["field__name"];
-export const aboutField = editForm.elements["field__about"];
+export const nameField = editForm.elements["fieldName"];
+export const aboutField = editForm.elements["fieldAbout"];
 
 export const addButton = document.querySelector(".button_type_add");
 
 export const addForm = document.forms["add-form"];
-export const titleField = addForm.elements["field__title"];
-export const linkField = addForm.elements["field__link"];
+export const confirmDeleteForm = document.forms["confirm-delete-form"];

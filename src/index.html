@@ -6,6 +6,8 @@
     <title>Mesto</title>
   </head>
   <body class="page">
+
+    <!-- Шапка -->
     <header class="header container">
       <a
         href="https://weeks6.github.io/mesto"
@@ -13,6 +15,8 @@
         target="_self"
       ></a>
     </header>
+
+    <!-- Контент -->
     <main class="main container">
       <section class="profile">
         <div class="avatar">
@@ -47,9 +51,13 @@
         <ul class="elements"></ul>
       </section>
     </main>
+
+    <!-- Подвал -->
     <footer class="footer container">
-      <p class="footer__title">© 2020 Mesto Russia</p>
+      <p class="footer__title">© 2021 Mesto Russia</p>
     </footer>
+    
+    <!-- Попап редактирования профиля -->
     <div class="popup edit-popup">
       <div class="popup__container container">
         <button
@@ -64,26 +72,26 @@
               <input
               type="text"
               class="form__text-field"
-              name="field__name"
+              name="fieldName"
               placeholder="Имя"
               minlength="2"
               maxlength="40"
               required
             />
-            <span class="form__input-error" id="field__name-error"></span>
+            <span class="form__input-error" id="fieldName-error"></span>
             </div>
             
             <div class="form__input-field">
               <input
               type="text"
               class="form__text-field"
-              name="field__about"
+              name="fieldAbout"
               placeholder="О себе"
               minlength="2"
               maxlength="200"
               required
             />
-            <span class="form__input-error" id='field__about-error'></span>
+            <span class="form__input-error" id='fieldAbout-error'></span>
 
             </div>
             
@@ -94,6 +102,8 @@
         </form>
       </div>
     </div>
+
+    <!-- Попап добавления карточки -->
     <div class="popup add-popup" >
       <div class="popup__container container">
         <button
@@ -109,24 +119,24 @@
               <input
                 type="text"
                 class="form__text-field"
-                name="field__title"
+                name="fieldTitle"
                 placeholder="Название"
                 minlength="2"
                 maxlength="30"
                 required
               />
-              <span class="form__input-error" id="field__title-error"></span>
+              <span class="form__input-error" id="fieldTitle-error"></span>
             </div>
 
             <div class="form__input-field">
               <input
               type="url"
               class="form__text-field"
-              name="field__link"
+              name="fieldLink"
               placeholder="Ссылка на картинку"
               required
             />
-              <span class="form__input-error" id="field__link-error"></span>
+              <span class="form__input-error" id="fieldLink-error"></span>
             </div>
             
             
@@ -137,6 +147,8 @@
         </form>
       </div>
     </div>
+
+    <!-- Попап картинки при клике на карточку -->
     <div class="popup image-popup">
       <div class="image-popup__container">
         <button
@@ -148,6 +160,8 @@
         <h2 class="image-popup__title"></h2>
       </div>
     </div>
+
+    <!-- Попап подтверждения удаления карточки -->
     <div class="popup confirm-delete-popup">
       <div class="popup__container container">
         <button
@@ -155,7 +169,7 @@
           aria-label="Закрыть"
           class="button button_type_close"
         ></button>
-        <form class="form">
+        <form class="form" name="confirm-delete-form">
 
           <div class="form__inner">
             <h2 class="popup__title">Вы уверены?</h2>
@@ -167,6 +181,7 @@
       </div>
     </div>
 
+    <!-- Попап редактирования аватара профиля -->
     <div class="popup edit-avatar-popup">
       <div class="popup__container container">
         <button
@@ -182,11 +197,11 @@
               <input
               type="url"
               class="form__text-field"
-              name="field__avatar"
+              name="fieldAvatar"
               placeholder="Ссылка на картинку"
               required
             />
-              <span class="form__input-error" id="field__avatar-error"></span>
+              <span class="form__input-error" id="fieldAvatar-error"></span>
             </div>
             
             <button class="button button_type_save" type="submit">
@@ -197,6 +212,7 @@
       </div>
     </div>
 
+    <!-- Темплейт карточки -->
     <template id="card-template">
       <li class="card">
         <button class="button button_type_delete"></button>
